@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title id="page-title">Thiệp cưới</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&family=Playball&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  window.scrollTo(0,0);
+</script>
+</head>
+<body class="locked">
+
+<!-- INVITATION / OPENING SCREEN -->
+<div class="invitation" id="invitation">
+  <div class="invitation-petals" aria-hidden="true"></div>
+  <div class="invitation-inner">
+    <div class="invitation-eyebrow" style="margin-bottom:0">Trân trọng kính mời</div>
+    <div class="invitation-eyebrow" style="font-size:30px">Bạn và gia đình</div>
+    <div class="invitation-eyebrow" style="margin-bottom:0">Tới dự đám cưới của chúng tôi</div>
+    <div class="invitation-names" id="invitation-names"></div>
+    <div class="invitation-eyebrow" style="margin-bottom:0;">vào ngày</div>
+    <div class="invitation-date" id="invitation-date"></div>
+    <button class="invitation-btn" id="invitation-open" type="button">
+      <span class="invitation-btn-icon"></span>
+      Mở thiệp mời
+    </button>
+  </div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bg-music" src="audio/music.mp3" loop preload="none"></audio>
+<button class="music-toggle" id="music-toggle" type="button" aria-label="Bật/tắt nhạc nền" hidden>
+  <img class="music-disc" src="img/music.webp" alt="Nhạc nền">
+  <span class="music-mute-line" aria-hidden="true"></span>
+</button>
+
+<div class="page" id="page">
+  <div class="petals-layer" aria-hidden="true"></div>
+  <!-- WEDDING -->
+  <div class="wedding">
+    <img src="" alt="Ảnh cưới" id="wedding-img">
+    <div class="wedding-content">
+      <div class="script">We get married!</div>
+      <div class="wedding-names" id="wedding-names"></div>
+      <div class="wedding-date" id="wedding-date"></div>
+      <div class="wedding-caption">We will become husband and wife in</div>
+    </div>
+  </div>
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap reveal">
+    <div class="countdown" id="countdown">
+      <div class="cell"><div class="num" id="cd-days">--</div><div class="label">Ngày</div></div>
+      <div class="cell"><div class="num" id="cd-hours">--</div><div class="label">Giờ</div></div>
+      <div class="cell"><div class="num" id="cd-mins">--</div><div class="label">Phút</div></div>
+      <div class="cell"><div class="num" id="cd-secs">--</div><div class="label">Giây</div></div>
+    </div>
+  </div>
+  <!-- COUPLE PHOTOS -->
+  <div class="duo reveal">
+    <div class="tall"><img class="duo-photo" src="" alt="Ảnh cưới" id="duo-tall-img"></div>
+    <div class="stack">
+      <div><img class="duo-photo" src="" alt="Ảnh cưới" id="duo-stack1-img"></div>
+      <div><img class="duo-photo" src="" alt="Ảnh cưới" id="duo-stack2-img"></div>
+    </div>
+  </div>
+  <!-- Slide nhiều ảnh cho thiệp cưới -->
+  <div class="duo-extra" id="duo-extra" aria-hidden="true"></div>
+
+  <!-- SAVE THE DATE -->
+  <div class="save-date reveal">
+    <div class="line1">SAVE</div>
+    <div class="line2">the</div>
+    <div class="line3">DATE</div>
+  </div>
+  <!-- FAMILIES -->
+  <div class="families reveal">
+    <div>
+      <h4>Nhà trai</h4>
+      <p id="family-groom-info"></p>
+    </div>
+    <div class="sep"></div>
+    <div>
+      <h4>Nhà gái</h4>
+      <p id="family-bride-info"></p>
+    </div>
+  </div>
+  <div class="invite-line reveal">Thân mời đến dự lễ thành hôn của<br>chúng mình!</div>
+  <div class="couple-names-script reveal">
+    <div class="name" id="script-name-groom"></div>
+    <div class="amp">&amp;</div>
+    <div class="name" id="script-name-bride"></div>
+  </div>
+  <!-- EVENT TIME -->
+  <div class="event-time reveal">
+    <div class="lead">Được tổ chức vào lúc</div>
+    <div class="big" id="event-time-big"></div>
+    <div class="sub" id="event-time-sub"></div>
+  </div>
+  <!-- CALENDAR -->
+  <div class="calendar-wrap reveal">
+    <div class="calendar">
+      <div class="calendar-head" id="calendar-head"></div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+  </div>
+  <!-- LOCATION -->
+  <div class="location reveal">
+    <h4>Địa điểm</h4>
+    <p id="location-info"></p>
+    <div class="map-frame">
+      <iframe loading="lazy" id="location-map" src="https://maps.google.com/maps?q=Bach%20Dang%2C%20Hai%20Phong&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    </div>
+  </div>
+  <!-- BRIDE -->
+  <div class="person reveal">
+    <div class="photo"><img src="" alt="Cô dâu" id="bride-photo-img"></div>
+    <div class="info">
+      <div class="role">Cô dâu</div>
+      <div class="name" id="bride-name-detail"></div>
+      <div class="dob" id="bride-dob-detail"></div>
+    </div>
+  </div>
+  <!-- GROOM -->
+  <div class="person reverse reveal">
+    <div class="info">
+      <div class="role">Chú rể</div>
+      <div class="name" id="groom-name-detail"></div>
+      <div class="dob" id="groom-dob-detail"></div>
+    </div>
+    <div class="photo"><img src="" alt="Chú rể" id="groom-photo-img"></div>
+  </div>
+  <!-- TIMELINE -->
+  <div class="timeline reveal" id="timeline-section">
+    <div class="timeline-bg" id="timeline-bg" aria-hidden="true"></div>
+    <h3>TIMELINE</h3>
+    <div class="tl-track">
+      <div class="tl-item"><img class="tl-icon" src="img/xe-hoa.webp" alt="Rước dâu"><div class="tl-dot"></div><span class="tl-time">05:30</span>Rước dâu</div>
+      <div class="tl-item"><img class="tl-icon" src="img/cong-cuoi.webp" alt="Đón khách"><div class="tl-dot"></div><span class="tl-time">10:30</span>Đón khách</div>
+      <div class="tl-item"><img class="tl-icon" src="img/nhan-cuoi.webp" alt="Lễ thành hôn"><div class="tl-dot"></div><span class="tl-time">12:00</span>Lễ thành hôn</div>
+      <div class="tl-item"><img class="tl-icon" src="img/luu-niem.webp" alt="Lưu niệm"><div class="tl-dot"></div><span class="tl-time">13:00</span>Lưu niệm</div>
+    </div>
+  </div>
+  <div class="note reveal">Hãy xác nhận sự có mặt của bạn để chúng mình<br>chuẩn bị đón tiếp một cách chu đáo nhất.<br>Trân trọng!</div>
+  <!-- RSVP -->
+  <div class="rsvp reveal">
+    <div class="rsvp-card">
+      <h4>Xác nhận tham dự</h4>
+      <form id="rsvp-form">
+        <div class="field">
+          <label for="rsvp-name">Tên của bạn</label>
+          <input type="text" id="rsvp-name" placeholder="Nhập tên của bạn" required>
+        </div>
+        <div class="field">
+          <label>Xác nhận tham dự</label>
+          <div class="radio-row">
+            <label class="radio-opt"><input type="radio" name="attend" value="yes" checked> Có, tôi sẽ tham dự</label>
+            <label class="radio-opt"><input type="radio" name="attend" value="no"> Không tham dự</label>
+          </div>
+        </div>
+        <div class="field" id="guest-field">
+          <label for="rsvp-guests">Số người tham gia cùng</label>
+          <select id="rsvp-guests">
+            <option value="mot-minh">Một mình</option>
+            <option value="di-cung-bo">Đi cùng bồ</option>
+            <option value="khac">Khác</option>
+          </select>
+        </div>
+        <div class="field" id="khac-field" hidden>
+          <label for="rsvp-khac">Thông tin thêm</label>
+          <input type="text" id="rsvp-khac" placeholder="VD: Đi cùng 3 người lớn, 1 trẻ em">
+        </div>
+        <button type="submit" class="rsvp-submit">Gửi</button>
+        <div class="rsvp-success" id="rsvp-success"></div>
+      </form>
+    </div>
+  </div>
+  <!-- GIFT -->
+  <div class="gift reveal">
+    <div class="gift-label">Hộp quà mừng cưới</div>
+    <button class="gift-box-btn" id="gift-open" type="button" aria-label="Mở hộp quà mừng">
+      <span class="gift-box-wobble">
+        <img src="img/qua-cuoi.webp" alt="Hộp quà mừng" class="gift-box-img" id="gift-box-img">
+      </span>
+    </button>
+    <div class="gift-hint">Chạm vào hộp quà để gửi lời mừng cưới</div>
+    <div class="role" id="gift-role"></div>
+    <div class="name" id="gift-name"></div>
+    <div class="bank" id="gift-bank"></div>
+  </div>
+  <!-- FOOTER -->
+  <footer class="reveal">
+    <div class="role" id="footer-role"></div>
+    <div class="name" id="footer-name"></div>
+    <div class="bank" id="footer-bank"></div>
+    <div class="thanks">Thank you!</div>
+  </footer>
+</div>
+
+<!-- CONTACT BUTTON -->
+<a class="like-fab contact-fab" id="lien-he" href="#" aria-label="Liên hệ" target="_blank" rel="noopener">☏</a>
+
+<!-- LIKE BUTTON -->
+<button class="like-fab" id="like-btn" aria-label="Gửi lời chúc mừng">♥<span class="count" id="like-count">0</span></button>
+
+<!-- GIFT MODAL -->
+<div class="modal-overlay" id="gift-modal">
+  <div class="modal">
+    <button class="modal-close" id="gift-close" aria-label="Đóng">&times;</button>
+    <h4>Gửi lời chúc mừng</h4>
+    <div class="qr-wrap">
+      <img src="img/qr-gift.webp" alt="Mã QR gửi mừng cưới" class="qr-img" id="qr-img">
+      <div class="qr-caption">Quét mã để xem thông tin chuyển khoản mừng cưới</div>
+    </div>
+    <div class="bank-row" id="gift-bride-row">
+      <div class="who">CÔ DÂU</div>
+      <div class="fullname" id="gift-bride-fullname"></div>
+      <div class="acc">
+        <span id="gift-bride-account"></span>
+        <button class="copy-btn" id="gift-bride-copy" data-copy="">Sao chép</button>
+      </div>
+    </div>
+    <div class="bank-row" id="gift-groom-row">
+      <div class="who">CHÚ RỂ</div>
+      <div class="fullname" id="gift-groom-fullname"></div>
+      <div class="acc">
+        <span id="gift-groom-account"></span>
+        <button class="copy-btn" id="gift-groom-copy" data-copy="">Sao chép</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COUPLE PHOTO LIGHTBOX -->
+<div class="modal-overlay lightbox-overlay" id="photo-lightbox">
+  <div class="lightbox">
+    <button class="modal-close" id="lightbox-close" aria-label="Đóng">&times;</button>
+    <div class="lightbox-stage">
+      <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Ảnh trước">&#10094;</button>
+      <img src="" alt="Ảnh cưới" class="lightbox-img" id="lightbox-img">
+      <button class="lightbox-nav next" id="lightbox-next" aria-label="Ảnh sau">&#10095;</button>
+    </div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+</div>
+
+<script src="js/thong-tin.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
