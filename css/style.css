@@ -236,20 +236,6 @@ img{display:block;width:100%;height:100%;object-fit:cover;}
 .qr-img{width:168px; height:168px; display:inline-block; border:1px solid var(--line); border-radius:var(--radius);
   padding:8px; background:#fff;}
 .qr-caption{ margin-top:10px; font-size:12px; color:var(--ink-soft); line-height:1.6;}
-/* @media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto;}
-  *{transition:none !important;}
-  .petal{display:none;}
-  .reveal{opacity:1;transform:none;}
-  .gift-box-wobble{animation:none;}
-  .gift-box-img.pop{animation:none;}
-  .cal-grid .day.active{animation:none;}
-  .person .photo,.person .info,.families > div{opacity:1 !important;transform:none !important;}
-  .wedding-content .script,.wedding-name-bride,.wedding-name-groom,.wedding-names .amp,.wedding-date,.wedding-caption{opacity:1 !important;transform:none !important;}
-  .save-date .line1,.save-date .line2,.save-date .line3{opacity:1 !important;transform:none !important;}
-  .couple-names-script #script-name-groom,.couple-names-script .amp,.couple-names-script #script-name-bride{opacity:1 !important;transform:none !important;}
-  .tl-item{opacity:1 !important;transform:none !important;}
-} */
 .modal-overlay{ position:fixed;inset:0; background:rgba(46,36,32,0.55); display:none; align-items:center;justify-content:center;
   z-index:50; padding:20px;}
 .modal-overlay.open{display:flex;}
